@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/loginstly.css" />
+
+    <title>Log in</title>
+  </head>
+  <body>
+
+
+    <div class="container">
+      <input type="checkbox" id="flip" />
+      <div class="cover">
+        <div class="ico">
+          <ion-icon name="cart-outline"></ion-icon>
+        </div>
+        <div class="front">
+
+        </div>
+        <div class="back">
+
+        </div>
+      </div>
+      <div class="forms">
+        <div class="form-content">
+          <div class="signup-form">
+            <div class="title">Signup</div>
+            <form th:action="@{/registration}" method="post" th:object="${users}">
+              <div class="input-boxes">
+                <div class="input-box">
+                  <i class="fas fa-user"></i>
+                  <input type="text" placeholder="Enter your first name" id="firstName" th:field="*{firstName}"
+                         required autofocus="autofocus" />
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-user"></i>
+                  <input type="text" placeholder="Enter your last name" id="lastName"  th:field="*{lastName}"
+                         required autofocus="autofocus" />
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-user"></i>
+                  <input type="text" placeholder="Enter your email" id="email"  th:field="*{email}" required
+                         autofocus="autofocus" />
+                </div>
+
+                <div class="input-box">
+                  <i class="fas fa-lock"></i>
+                 <input
+                        id="password"  type="password" placeholder="Enter your password"
+                        th:field="*{password}" required autofocus="autofocus" />
+                </div>
+                <div class="button input-box">
+                  <input type="submit" value="Submit" />
+                </div>
+                <div class="text sign-up-text">
+                  Already have an account? <label for="flip"><a href="/" th:href="@{/login}">Login
+                  here</a></label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

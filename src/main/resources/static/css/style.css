@@ -1,0 +1,63 @@
+/* Import fonts from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Gugi&family=Lato&family=Roboto&family=Sofia&display=swap');
+
+:root{
+    --light-grey:#2b3032a1;
+    --primary-color: #587daadf;
+    --border: #2b303218;
+    --text-color: #68aeff;
+    --roboto: "Roboto", sans-serif;
+    --gugi: "Gugi", cursive;
+    --sofia: "Sofia", cursive;
+}
+
+.primary-color{
+    color: var(--primary-color);
+}
+
+.bg-primary-color{
+    background-color: var(--primary-color) !important;
+}
+
+.text-color{
+    color: var(--text-color);
+}
+
+.font-roboto{
+    font-family: var(--poppins-font);
+}
+
+.lightblue{
+    color: lightblue;
+}
+
+/* header */
+
+header{
+   
+    font-family: var(--poppins-font);
+}
+
+
+/* Navigation Menu */
+.navbar-nav{
+    padding: 5em 5em;
+}
+
+.navbar-nav .nav-link{
+    font-size: 0.9em;
+    color: var(--light-grey) !important;
+}
+
+.navbar-nav .nav-item .nav-link{
+    padding: 0 1.3em;
+}
+
+.navbar-nav .basket-icon{
+    margin-right: 6.5rem !important;
+}
+
+
+
+

@@ -1,0 +1,83 @@
+
+
+.container form{
+    padding: 20px;
+    width: 900px;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+}
+
+.con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.container form .roww{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.container form .roww .coll{
+    flex: 1 1 250px;
+}
+
+.container form .roww .coll .title{
+    font-size: 20px;
+    color: #333;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+
+}
+.inputBox{
+    margin-bottom: 20px;
+}
+.container form .roww .coll .inputBox span{
+    margin-bottom: 5px;
+    display: block;
+}
+.container form .roww .coll .inputBox input{
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    text-transform: none;
+}
+
+.container form .roww .coll .inputBox input:focus{
+    border: 1px solid black;
+}
+
+.container form .roww .coll .flexx{
+    display: flex;
+    gap:15px
+}
+
+.container form .roww .coll .flexx .inputBox{
+    margin-top: 5px;
+}
+
+.container form .roww .coll  .inputBox img{
+    height: 34px;
+    width: max-content;
+   margin-bottom: 35px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+}
+
+.container form .submit-btn{
+    width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    background-color: #2c4893;
+    color: white;
+    margin-top: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.container form .submit-btn:hover{
+    background-color: #1f3163;
+}
+

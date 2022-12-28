@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <!-- normalize css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e4e1eed517.js" crossorigin="anonymous"></script>
+
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <!-- custom utilities css -->
+    <link rel="stylesheet" href="../css/utilities.css">
+
+    <!-- custom main css -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" href="../css/category.css">
+    <!-- <link rel="stylesheet" href="./css/navbar.css"> -->
+
+    <link rel="stylesheet" href="../css/nav2.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+	<div class="navv" style="margin-bottom: 20px;">
+		<div class="navbar">
+			<i class='bx bx-menu'></i>
+			<div class="logo"><a th:href="@{/}" href="">Nævis Furniture</a></div>
+			<div class="nav-links">
+				<div class="sidebar-logo">
+					<span class="logo-name">Nævis Furniture</span>
+					<i class='bx bx-x'></i>
+				</div>
+				<ul class="links">
+					<li><a th:href="@{/}" href="">Home</a></li>
+					<li>
+						<a th:href="@{/shop}" href="#">Category</a>
+						<i class='bx bxs-chevron-down htmlCss-arrow arrow  '></i>
+						<ul class="htmlCss-sub-menu sub-menu">
+
+							<a href="" th:each="category, iStat : ${categories}"
+								th:href="@{/shop/category/{id}(id=${category.id})}">
+								<li class="list-group-item2" th:text="${category.name}"></li>
+							</a>
+
+						</ul>
+					</li>
+
+					<li>
+						<a href="#" th:href="@{/all_products}">Shop</a>
+						<i class='bx bxs-chevron-down js-arrow arrow '></i>
+						<ul class="js-sub-menu sub-menu">
+							<li><a th:href="@{/all_products}" href="#">All products</a></li>
+							<li><a th:href="@{/checkout}" href="#">Check Out</a></li>
+						</ul>
+					</li>
+
+					<li>
+						<a th:href="@{/about}" href="#">About</a>
+						<i class='bx bxs-chevron-down at-arrow arrow '></i>
+						<ul class="at-sub-menu sub-menu">
+							<li><a th:href="@{/about}">Our Team</a></li>
+							<li><a th:href="@{/our_story}" href="#">Our Story</a></li>
+
+						</ul>
+					</li>
+
+					<li><a th:href="@{/contact}" href="#">Contact</a></li>
+
+					<li><a th:href="@{/faq}"  href="#">FAQ</a></li>
+
+					<li clasclass="nav-item active">
+						<a sec:authorize="isAnonymous()" th:href="@{/login}" href="#">Login</a>
+					</li>
+
+					<li class="nav-item active">
+						<a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">Logout</a>
+					</li>
+
+
+
+					<li style="width: max-content;" class="login"><a href="#" th:href="@{/cart}"> <i
+								class="fas fa-shopping-basket"></i><span style="display: inline;" class="nav-link"
+								th:text="${cartCount}"></span></a></li>
+
+					<li>
+						<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}" href="#">Admin</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="search-box">
+				<i class='bx bx-search'></i>
+				<div class="input-box">
+					<input type="text" placeholder="Search...">
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+    </header>
+    <!-- /header -->
+
+    <!-- main content -->
+    <main>
+        <div class="slider-area ">
+            <div class="slider-active">
+                <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center slider-bg2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-8 col-md-8">
+                                <div class="hero__caption hero__caption2">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">Products</h1>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a th:href="@{/}" href="#">Home</a></li>
+                                            <li class="breadcrumb-item"><a th:href="@{/all_products}" href="#">All Products</a>
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="new-products" class="new-products bg-light-grey-color-shade">
+            <div class="container">
+                <div class="row1 justify-content-center">
+                    <div class="col">
+                        <div class="section-title-product text-center">
+                            <h2><b>All Products</b></h2>
+                            <p class="lead mt-4">Choose the furniture you like, the style that is right for you.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="new-products-content grid">
+                    <div class="new-product-item" th:each="product : ${products}">
+                        <div class="image">
+                            <img style="width: 100%; height:200px" th:src="@{${'/productImages/' + product.imageName}}"
+							th:alt="${product.name}">
+                        </div>
+                        <div class="info">
+                            <div class="ratings text-grey">
+                                <i class="fas fa-star text-brown"></i>
+                                <i class="fas fa-star text-brown"></i>
+                                <i class="fas fa-star text-brown"></i>
+                                <i class="fas fa-star text-brown"></i>
+                                <i class="fas fa-star text-light-grey"></i><br>
+                                <span>(10 Reviews)</span>
+                            </div>
+                            <p class="name" th:text="${product.name}"></p>
+                            <div class="price">
+                                <span class="text-dark" th:text="${product.price}"><span> ฿ 5,000</span></span>
+
+                                <a style="width: 70px;" href="" th:href="@{/shop/viewproduct/{id}(id=${product.id})}"><span class="view-item" style="margin-left: 45px;">view</span></a>
+
+                                <a sec:authorize="hasRole('ROLE_ADMIN')" style="width: 70px;" href="" th:href="@{/admin/product/update/{id}(id=${product.id})}"><span class="view-item" style="margin-left: 2px;">update</span></a>
+
+                                <a sec:authorize="hasRole('ROLE_USER')" style="width: 70px;" href="" th:href="@{/addToCart/{id}(id = ${product.id})}"><span class="view-item" style="margin-left: 2px;">+<ion-icon name="cart-outline"></ion-icon></span></a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+
+            </div>
+            </div>
+
+            <!-- Pagination  -->
+
+            <section class="pagination">
+                <ul class="page">
+                    <!-- <a href="" id="page">
+                        <li>Previous</li>
+                    </a> -->
+
+                    <a href="#" id="page">
+                        <li>Next</li>
+                    </a>
+
+                    <!-- <a href="all_products2.html" id="page">
+                        <li>1</li>
+                    </a> -->
+
+                    <a th:href="@{/all_products}" href="#" id="page">
+                        <li>2</li>
+                    </a>
+
+                    <a th:href="@{/all_products}" href="#" id="page">
+                        <li>3</li>
+                    </a>
+
+                    <a th:href="@{/all_products}" href="#" id="page">
+                        <li>4</li>
+                    </a>
+
+                    <a th:href="@{/all_products}" href="#" id="page">
+                        <li>...</li>
+                    </a>
+
+                    <a th:href="@{/all_products}" href="#" id="page">
+                        <li>10</li>
+                    </a>
+                </ul>
+            </section>
+        </section>
+        <!-- end paginator -->
+
+        </section>
+        <!-- end of top new products section -->
+
+
+    </main>
+    <!-- end of main content -->
+
+    <!-- footer -->
+    <div class="foot">
+        <footer class="footer bg-light-brown" id="footer">
+            <div class="container">
+                
+                  <div class="row row-foot">
+                    <div class="footer-item col-lg-3 col-md-6">
+                        <h3>Nævis.com</h3>
+                        <p class="text">Improve the atmosphere through interior design that is driven by purposes to
+                            bring
+                            value into your environment</p>
+                        <ul class="social-links flex">
+                            <li>
+                                <a href="#" class="flex"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex"><i class="fab fa-pinterest"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-item col-lg-3 col-md-6">
+                        <h3>Contact Us</h3>
+                        <p class="text">Khon Kaen University 123 Moo 16 Mittraphap Rd., Nai-Muang, Muang District, Khon
+                            Kaen
+                            40002,Thailand.</p>
+                        <p class="text">Phone: (+66) 4300 9700</p>
+                        <p class="text">Email: info@nævis.com</p>
+                    </div>
+
+                    <div class="footer-item col-lg-3 col-md-6">
+                        <h3>Recent Post</h3>
+                        <ul>
+                            <li class="text"><a href="#">Rooms decoration package</a></li>
+                            <li class="text"><a href="#">Dinning Materials</a></li>
+                            <li class="text"><a href="#">Event Furniture</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-item col-lg-3 col-md-6">
+                        <h3>Our Portfolio</h3>
+                        <ul>
+                            <li class="text"><a href="#">EFTA Design</a></li>
+                            <li class="text"><a href="#">County Hall Decoration</a></li>
+                            <li class="text"><a href="#">SOO Conference</a></li>
+                            <li class="text"><a href="#">LA Events</a></li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="footer-end bg-dark">
+              
+                    <p class="text text-white text-center">&copy; Copyright 2021. All Right Reserved. Designed and
+                        Developed by Juthaporn & Thanawat</p>
+               
+            </div>
+        </footer>
+    <!-- end of footer -->
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

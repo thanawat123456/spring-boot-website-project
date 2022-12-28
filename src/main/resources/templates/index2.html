@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<!-- normalize css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+		integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Bootstap -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/e4e1eed517.js" crossorigin="anonymous"></script>
+
+	<!-- Custom Style Sheet -->
+	<link rel="stylesheet" href="./css/style.css">
+
+	<!-- Slick Slider -->
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+	<!-- custom utilities css -->
+	<link rel="stylesheet" href="./css/utilities.css">
+
+
+
+	<!-- custom main css -->
+	<link rel="stylesheet" href="./css/main.css">
+
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/e4e1eed517.js" crossorigin="anonymous"></script>
+
+
+	<link rel="stylesheet" href="css/nav2.css">
+	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+</head>
+
+<body>
+
+	<!-- header -->
+
+	<div class="navv" style="margin-bottom: 20px;">
+		<div class="navbar">
+			<i class='bx bx-menu'></i>
+			<div class="logo"><a th:href="@{/}" href="">Nævis Furniture</a></div>
+			<div class="nav-links">
+				<div class="sidebar-logo">
+					<span class="logo-name">Nævis Furniture</span>
+					<i class='bx bx-x'></i>
+				</div>
+				<ul class="links">
+					<li><a th:href="@{/}" href="">Home</a></li>
+					<li>
+						<a th:href="@{/shop}" href="#">Category</a>
+						<i class='bx bxs-chevron-down htmlCss-arrow arrow  '></i>
+						<ul class="htmlCss-sub-menu sub-menu">
+
+							<a href="" th:each="category, iStat : ${categories}"
+								th:href="@{/shop/category/{id}(id=${category.id})}">
+								<li class="list-group-item2" th:text="${category.name}"></li>
+							</a>
+
+						</ul>
+					</li>
+
+					<li>
+						<a href="#" th:href="@{/all_products}">Shop</a>
+						<i class='bx bxs-chevron-down js-arrow arrow '></i>
+						<ul class="js-sub-menu sub-menu">
+							<li><a th:href="@{/all_products}" href="#">All products</a></li>
+							<li><a th:href="@{/checkout}" href="#">Check Out</a></li>
+						</ul>
+					</li>
+
+					<li>
+						<a th:href="@{/about}" href="#">About</a>
+						<i class='bx bxs-chevron-down at-arrow arrow '></i>
+						<ul class="at-sub-menu sub-menu">
+							<li><a th:href="@{/about}">Our Team</a></li>
+							<li><a th:href="@{/our_story}" href="#">Our Story</a></li>
+
+						</ul>
+					</li>
+
+					<li><a th:href="@{/contact}" href="#">Contact</a></li>
+
+					<li><a th:href="@{/faq}"  href="#">FAQ</a></li>
+
+					<li clasclass="nav-item active">
+						<a sec:authorize="isAnonymous()" th:href="@{/login}" href="#">Login</a>
+					</li>
+
+					<li class="nav-item active">
+						<a sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">Logout</a>
+					</li>
+
+
+
+					<li style="width: max-content;" class="login"><a href="#" th:href="@{/cart}"> <i
+								class="fas fa-shopping-basket"></i><span style="display: inline;" class="nav-link"
+								th:text="${cartCount}"></span></a></li>
+
+					<li>
+						<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}" href="#">Admin</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="search-box">
+				<i class='bx bx-search'></i>
+				<div class="input-box">
+					<input type="text" placeholder="Search...">
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- /header -->
+
+
+	<header class="header bg-light flex" id="home">
+		<div class="container">
+			<div class="header-content grid text-center hc">
+				<div class="header-left">
+					<h1>Nævis Furniture Collection</h1>
+					<p class="text">Improve the atmosphere through interior design that is driven by purposes to
+						bring value into your environment</p>
+
+					<a th:href="@{/all_products}" href="#" class="btn-header text-white bg-brown">SHOP NOW</a>
+				</div>
+
+				<div class="header-right">
+					<img style="width: 35%; margin-right: 10%;" src="images/header-sofa-img.png">
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- main section -->
+
+
+
+	<!-- top new products section -->
+	<section id="new-products" class="new-products  bg-light-grey-color-shade">
+		<div class="container">
+			<div class="section-title text-center">
+				<h2>top new products</h2>
+				<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+				<div class="line"></div>
+			</div>
+
+			
+            <div class="new-products-content grid">
+                <div class="new-product-item">
+                    <div class="image">
+                        <img src="./images/new_product_img_1.png" alt="">
+                        <span class="badge bg-brown text-white text-center text-uppercase">sale</span>
+                    </div>
+                    <div class="info">
+                        <div class="ratings text-grey">
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <span>(10 Reviews)</span>
+                        </div>
+                        <p class="name">Chair</p>
+                        <div class="price">
+                            <span class="old text-grey">฿ 500.00</span>
+                            <span class="new text-brown">฿ 350.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="new-product-item">
+                    <div class="image">
+                        <img src="./images/new_product_img_2.png" alt="">
+                        <span class="badge bg-brown text-white text-center text-uppercase">sale</span>
+                    </div>
+                    <div class="info">
+                        <div class="ratings text-grey">
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-light-grey"></i>
+                            <span>(10 Reviews)</span>
+                        </div>
+                        <p class="name">Table</p>
+                        <div class="price">
+                            <span class="old text-grey">฿ 500.00</span>
+                            <span class="new text-brown">฿ 350.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="new-product-item">
+                    <div class="image">
+                        <img src="./images/new_product_img_3.png" alt="">
+                        <span class="badge bg-brown text-white text-center text-uppercase">sale</span>
+                    </div>
+                    <div class="info">
+                        <div class="ratings text-grey">
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-light-grey"></i>
+                            <span>(10 Reviews)</span>
+                        </div>
+                        <p class="name">Sofa</p>
+                        <div class="price">
+                            <span class="old text-grey">฿ 17,000.00</span>
+                            <span class="new text-brown">฿ 15,000.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="new-product-item">
+                    <div class="image">
+                        <img src="./images/new_product_img_4.png" alt="">
+                        <span class="badge bg-brown text-white text-center text-uppercase">sale</span>
+                    </div>
+                    <div class="info">
+                        <div class="ratings text-grey">
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-brown"></i>
+                            <i class="fas fa-star text-light-grey"></i>
+                            <span>(10 Reviews)</span>
+                        </div>
+                        <p class="name">Decor</p>
+                        <div class="price">
+                            <span class="old text-grey">฿ 450.00</span>
+                            <span class="new text-brown">฿ 300.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+	</section>
+	<!-- end of top new products section -->
+
+	<!-- category section -->
+	<section class="category py bg-light-brown" id="category">
+		<div class="container">
+			<div class="category-content grid">
+				<div class="category-item">
+					<img src="images/category_img_1.png">
+					<div class="category-badge bg-white text-dark flex">Sofa</div>
+				</div>
+				<div class="category-item">
+					<img src="images/category_img_2.png">
+					<div class="category-badge bg-white text-dark flex">Decor</div>
+				</div>
+				<div class="category-item">
+					<img src="images/category_img_3.png">
+					<div class="category-badge bg-white text-dark flex">Chair</div>
+				</div>
+				<div class="category-item">
+					<img src="images/category_img_4.png">
+					<div class="category-badge bg-white text-dark flex">Table Set</div>
+				</div>
+				<div class="category-item">
+					<img src="images/category_img_5.png">
+					<div class="category-badge bg-white text-dark flex">Lightning</div>
+				</div>
+				<div class="category-item">
+					<img src="images/category_img_6.png">
+					<div class="category-badge bg-white text-dark flex">Furniture Stores</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end of category section -->
+
+	<!-- featured deals section -->
+	<section class="featured-deals bg-light-grey-color-shade " id="featured-deals">
+		<div class="container">
+			<div class="section-title text-center">
+				<h2>featured deals</h2>
+				<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+				<div class="line"></div>
+			</div>
+
+			<div class="featured-deals-content grid">
+				<div class="featured-deals-item">
+					<div class="image">
+						<img src="images/featured_deals_img_1.png">
+					</div>
+					<div class="info bg-white">
+						<div class="ratings text-grey">
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+						</div>
+						<p class="name">Decor For Drawing Room</p>
+						<div class="price">
+							<span class="text-grey">฿ 15,000.00</span>
+							<span class="new text-brown">฿ 13,500.00</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="featured-deals-item">
+					<div class="image">
+						<img src="images/featured_deals_img_2.png">
+					</div>
+					<div class="info bg-white">
+						<div class="ratings text-grey">
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+						</div>
+						<p class="name">Decor For Bed Room</p>
+						<div class="price">
+							<span class="old text-grey">฿ 10,000.00</span>
+							<span class="new text-brown">฿ 7,000.00</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="featured-deals-item">
+					<div class="image">
+						<img src="images/featured_deals_img_3.png">
+					</div>
+					<div class="info bg-white">
+						<div class="ratings text-grey">
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+						</div>
+						<p class="name">Decor For Bed Room</p>
+						<div class="price">
+							<span class="old text-grey">฿ 5,000.00</span>
+							<span class="new text-brown">฿ 3,500.00</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="featured-deals-item">
+					<div class="image">
+						<img src="images/featured_deals_img_4.png">
+					</div>
+					<div class="info bg-white">
+						<div class="ratings text-grey">
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-brown"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+							<i class="fas fa-star text-light-grey"></i>
+						</div>
+						<p class="name">Decor For Drawing Room</p>
+						<div class="price">
+							<span class="old text-grey">฿ 2,000.00</span>
+							<span class="new text-brown">฿ 1,300.00</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end of featured deals section -->
+
+	<!-- catalog section -->
+	<section class="catalog bg-brown" id="catalog">
+		<div class="catalog-content grid text-center">
+			<div class="catalog-left"></div>
+			<div class="catalog-right text-white flex py">
+				<div class="section-title">
+					<h2>modern living quarters</h2>
+				</div>
+				<p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id eaque doloribus,
+					repellat dolor nisi nihil facilis voluptatibus porro deleniti recusandae?</p>
+				<p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, sequi
+					distinctio corporis pariatur excepturi minima!</p>
+			</div>
+		</div>
+	</section>
+	<!-- end of catalog section -->
+
+
+	<!-- feedback section -->
+	<section class="feedback py bg-light-grey-color-shade mt-5" id="feedback">
+		<div class="container">
+			<div class="section-title text-center">
+				<h2>Feedback</h2>
+				<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+				<div class="line"></div>
+			</div>
+
+			<div class="feedback-inner">
+				<div class="feedback-container grid">
+					<div class="feedback-item bg-light-brown text-center" data-id="1">
+						<img src="images/quote-icon-dark.png" class="quote-icon">
+						<p class="text text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
+							corporis delectus, eaque consectetur ullam rerum?</p>
+						<!-- <div class="client">
+                            <img src="./photo/client-1.jpg">
+                        </div> -->
+					</div>
+
+					<div class="feedback-item bg-dark-grey text-center" data-id="2" id="feedback-display">
+						<img src="images/quote-icon.png" class="quote-icon">
+						<p class="text text-grey">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
+							corporis delectus, eaque consectetur ullam rerum?</p>
+						<!-- <div class="client">
+                            <img src="./photo/client-2.jpg">
+                        </div> -->
+					</div>
+
+					<div class="feedback-item bg-light-brown text-center" data-id="3">
+						<img src="images/quote-icon-dark.png" class="quote-icon">
+						<p class="text text-grey">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
+							corporis delectus, eaque consectetur ullam rerum?</p>
+						<!-- <div class="client">
+                            <img src="./photo/client-3.jpg">
+                        </div> -->
+					</div>
+				</div>
+			</div>
+			<!-- <div class="feedback-btns flex">
+                <button class="feedback-btn feedback-active-btn"></button>
+                <button class="feedback-btn"></button>
+                <button class="feedback-btn"></button>
+            </div> -->
+		</div>
+	</section>
+	<!-- end of feedback section -->
+
+
+	</main>
+	<!-- end of main content -->
+
+	<div class="foot">
+		<footer class="footer bg-light-brown" id="footer">
+			<div class="container">
+
+				<div class="row row-foot">
+					<div class="footer-item col-lg-3 col-md-6">
+						<h3>Nævis.com</h3>
+						<p class="text">Improve the atmosphere through interior design that is driven by purposes to
+							bring
+							value into your environment</p>
+						<ul class="social-links flex">
+							<li>
+								<a href="#" class="flex"><i class="fab fa-facebook-f"></i></a>
+							</li>
+							<li>
+								<a href="#" class="flex"><i class="fab fa-instagram"></i></a>
+							</li>
+							<li>
+								<a href="#" class="flex"><i class="fab fa-twitter"></i></a>
+							</li>
+							<li>
+								<a href="#" class="flex"><i class="fab fa-pinterest"></i></a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer-item col-lg-3 col-md-6">
+						<h3>Contact Us</h3>
+						<p class="text">Khon Kaen University 123 Moo 16 Mittraphap Rd., Nai-Muang, Muang District, Khon
+							Kaen
+							40002,Thailand.</p>
+						<p class="text">Phone: (+66) 4300 9700</p>
+						<p class="text">Email: info@nævis.com</p>
+					</div>
+
+					<div class="footer-item col-lg-3 col-md-6">
+						<h3>Recent Post</h3>
+						<ul>
+							<li class="text"><a href="#">Rooms decoration package</a></li>
+							<li class="text"><a href="#">Dinning Materials</a></li>
+							<li class="text"><a href="#">Event Furniture</a></li>
+						</ul>
+					</div>
+
+					<div class="footer-item col-lg-3 col-md-6">
+						<h3>Our Portfolio</h3>
+						<ul>
+							<li class="text"><a href="#">EFTA Design</a></li>
+							<li class="text"><a href="#">County Hall Decoration</a></li>
+							<li class="text"><a href="#">SOO Conference</a></li>
+							<li class="text"><a href="#">LA Events</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="footer-end bg-dark">
+
+				<p class="text text-white text-center">&copy; Copyright 2021. All Right Reserved. Designed and
+					Developed by Juthaporn & Thanawat</p>
+
+			</div>
+		</footer>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+	<script src="./js/main.js"></script>
+	<script>
+		let slideIndex = 1;
+		showSlides(slideIndex);
+
+		function plusSlides(n) {
+			showSlides(slideIndex += n);
+		}
+
+		function currentSlide(n) {
+			showSlides(slideIndex = n);
+		}
+
+		function showSlides(n) {
+			let i;
+			let slides = document.getElementsByClassName("mySlides");
+			let dots = document.getElementsByClassName("dot");
+			if (n > slides.length) { slideIndex = 1 }
+			if (n < 1) { slideIndex = slides.length }
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex - 1].style.display = "block";
+			dots[slideIndex - 1].className += " active";
+		}
+	</script>
+	<script src="./js/script.js"></script>
+</body>
+
+</html>

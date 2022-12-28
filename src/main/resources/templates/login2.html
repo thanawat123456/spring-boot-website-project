@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/loginstly.css" />
+
+    <title>Log in</title>
+  </head>
+  <body>
+
+
+    <div class="container">
+      <input type="checkbox" id="flip" />
+      <div class="cover">
+        <div class="ico">
+          <ion-icon name="cart-outline"></ion-icon>
+        </div>
+        <div class="front">
+
+        </div>
+        <div class="back">
+
+        </div>
+      </div>
+      <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+
+            <form  th:action="@{/login}" method="post">
+              <div class="input-boxes">
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input type="text" id ="username" name = "username" placeholder="Enter your email" autofocus="autofocus" required />
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-lock"></i>
+                  <input
+                    type="password" id="password" name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div class="text"><a href="#">Forgot password?</a></div>
+                <div class="button input-box">
+                  <input type="submit" name="login-submit" id="login-submit"
+                          value="Log In" />
+                </div>
+                <div class="text sign-up-text">
+                  Already have an account? <label for="flip"><a href="/" th:href="@{/registration}">Register
+                  here</a></label>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
