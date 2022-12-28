@@ -11,3 +11,6 @@
 
 ## หน้า Admin
 <img width="982" alt="ภาพถ่ายหน้าจอ 2565-12-28 เวลา 19 32 11" src="https://user-images.githubusercontent.com/88104340/209812756-6e26184a-80ed-4281-9713-419680df0241.png">
+
+## หน้าจัดการสินค้า
+<img width="982" alt="ภาพถ่ายหน้าจอ 2565-12-28 เวลา 19 33 29" src="https://user-images.githubusercontent.com/88104340/209812910-e40cbe5e-03b2-43d1-bffc-51a7758b5cea.png">
